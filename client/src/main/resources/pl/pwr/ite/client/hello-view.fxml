@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import pl.pwr.ite.client.view.model.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.pwr.ite.client.view.controller.HelloController">
+   <left>
+      <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="300.0" BorderPane.alignment="CENTER_LEFT">
+         <Label fx:id="totalStationsLabel" alignment="CENTER_RIGHT" text="Stations in database: ">
+            <font>
+               <Font size="25.0" />
+            </font>
+         </Label>
+         <HBox prefHeight="15.0" prefWidth="300.0">
+            <children>
+               <TextField fx:id="cityNameTextField" prefHeight="25.0" prefWidth="252.0" promptText="City name" />
+               <Button mnemonicParsing="false" onAction="#onTestClick" prefHeight="25.0" prefWidth="76.0" text="Search" />
+            </children>
+         </HBox>
+         <StationTreeView fx:id="stationsTreeView" prefHeight="606.0" prefWidth="300.0" />
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+               <BarChart fx:id="stationBarChart" animated="false" prefHeight="350.0" prefWidth="700.0" title="Test title">
+                   <xAxis>
+                       <CategoryAxis side="BOTTOM" />
+                   </xAxis>
+                   <yAxis>
+                       <NumberAxis side="LEFT" />
+                   </yAxis>
+               </BarChart>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
