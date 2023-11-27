@@ -23,10 +23,14 @@ public class WebClientImpl implements WebClient {
     }
 
     @Override
-    public <R> R get(String path, Class<R> responseType) throws IOException, InterruptedException {
+    public <R> R get(String path, Class<R> responseType) {
         var request = buildRequest(path);
-        var response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        return objectMapper.readValue(response.body(), responseType);
+        try {
+            var response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            return objectMapper.readValue(response.body(), responseType);
+        } catch (Exception ex) {
+            throw new RuntimeException(String.format("Couldn't fetch data from path: '%s'", request.uri()), ex);
+        }
     }
 
     private HttpRequest buildRequest(String path) {

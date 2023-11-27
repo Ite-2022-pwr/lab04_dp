@@ -17,6 +17,8 @@ public class Station {
     @JsonIgnore
     private List<Sensor> sensors;
 
+    private AirIndex index;
+
     public List<Sensor> getSensors() {
         return sensors;
     }
@@ -47,5 +49,13 @@ public class Station {
 
     public void setCity(City city) {
         this.city = city;
+    }
+
+    public AirIndex getIndex() {
+        return index;
+    }
+
+    public void setIndex(AirIndex index) {
+        this.index = index;
     }
 }

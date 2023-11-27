@@ -26,7 +26,7 @@ public class AirConditionApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
-        stationRepository.loadData();
+        stationRepository.loadAllStations();
     }
 
     public static void main(String[] args) {

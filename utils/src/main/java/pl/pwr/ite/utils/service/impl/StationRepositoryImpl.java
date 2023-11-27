@@ -1,5 +1,8 @@
 package pl.pwr.ite.utils.service.impl;
 
+import pl.pwr.ite.utils.model.AirIndex;
+import pl.pwr.ite.utils.model.Sensor;
+import pl.pwr.ite.utils.model.SensorData;
 import pl.pwr.ite.utils.model.Station;
 import pl.pwr.ite.utils.service.StationRepository;
 import pl.pwr.ite.utils.service.WebClient;
@@ -26,12 +29,23 @@ public class StationRepositoryImpl implements StationRepository {
     }
 
     @Override
-    public void loadData() {
-        try {
-            this.stations = List.of(webClient.get("/station/findAll", Station[].class));
-        } catch (IOException | InterruptedException ex) {
-            throw new RuntimeException("Couldn't load station list from external API", ex);
-        }
+    public void loadAllStations() {
+        this.stations = List.of(webClient.get("/station/findAll", Station[].class));
+    }
+
+    @Override
+    public List<Sensor> fetchSensors(Integer stationId) {
+        return List.of(webClient.get("/station/sensors/" + stationId, Sensor[].class));
+    }
+
+    @Override
+    public SensorData fetchSensorData(Integer sensorId) {
+        return webClient.get("/data/getData/" + sensorId, SensorData.class);
+    }
+
+    @Override
+    public AirIndex fetchStationIndex(Integer stationId) {
+        return webClient.get("/aqindex/getIndex/" + stationId, AirIndex.class);
     }
 
     public static StationRepository getInstance() {
