@@ -2,9 +2,12 @@ package pl.pwr.ite.utils.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import lombok.Getter;
 
 import java.util.List;
 
+@Data
 @JsonIgnoreProperties(value = { "gegrLat", "gegrLon", "addressStreet" })
 public class Station {
 
@@ -18,44 +21,4 @@ public class Station {
     private List<Sensor> sensors;
 
     private AirIndex index;
-
-    public List<Sensor> getSensors() {
-        return sensors;
-    }
-
-    public void setSensors(List<Sensor> sensors) {
-        this.sensors = sensors;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getStationName() {
-        return stationName;
-    }
-
-    public void setStationName(String stationName) {
-        this.stationName = stationName;
-    }
-
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
-
-    public AirIndex getIndex() {
-        return index;
-    }
-
-    public void setIndex(AirIndex index) {
-        this.index = index;
-    }
 }

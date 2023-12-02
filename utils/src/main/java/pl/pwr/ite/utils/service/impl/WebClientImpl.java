@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import pl.pwr.ite.utils.service.WebClient;
 
-import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -13,11 +12,10 @@ import java.net.http.HttpResponse;
 public class WebClientImpl implements WebClient {
     private static WebClient INSTANCE = null;
     private static final String BASE_API_URL = "https://api.gios.gov.pl/pjp-api/rest";
-    private final HttpClient client;
+    private final HttpClient client = HttpClient.newHttpClient();
     private final ObjectMapper objectMapper;
 
     public WebClientImpl() {
-        client = HttpClient.newHttpClient();
         this.objectMapper = new ObjectMapper();
         objectMapper.setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL);
     }
@@ -46,6 +44,4 @@ public class WebClientImpl implements WebClient {
         }
         return INSTANCE;
     }
-
-
 }
